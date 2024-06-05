@@ -2,15 +2,44 @@ const cds = require('@sap/cds');
 
 module.exports = async (srv) => {
 
-    const bupa = await cds.connect.to('API_BUSINESS_PARTNER');
+    const sord = await cds.connect.to('API_SALES_ORDER_SRV');
 
-    srv.on('READ', 'A_BusinessPartner', async (req) => {
-        return bupa.transaction(req).send({
+    srv.on('READ', 'A_SalesOrder', async (req) => {
+        const data = await sord.transaction(req).send({
             query: req.query,
             headers: {
-                apikey: process.env.apikey
+                apikey: 'XTdsjbOFdAQetDEjDHS2G41tSnI0Zi9o'
             }
         });
+
+        return data;
     });
+
+    srv.on('getSalesOrderAmountBySoldToParty', async (req) => {
+        const data = await sord.transaction(req).send({
+            query: SELECT.from(sord.entities.A_SalesOrder).limit(1000),
+            headers: {
+                apikey: 'XTdsjbOFdAQetDEjDHS2G41tSnI0Zi9o'
+            }
+        });
+
+        console.log(data);
+
+        const salesOrderAmountBySoldToParty = data.reduce((acc, curr) => {
+            if (acc[curr.SoldToParty]) {
+                acc[curr.SoldToParty] = Number(Number(acc[curr.SoldToParty]) + curr.TotalNetAmount).toFixed(2);
+
+                return acc;
+            }
+
+            acc[curr.SoldToParty] = curr.TotalNetAmount.toFixed(2);
+
+            return acc;
+        }, {});
+
+        console.log(salesOrderAmountBySoldToParty)
+
+        return salesOrderAmountBySoldToParty;
+    })
 
 }

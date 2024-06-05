@@ -22,11 +22,11 @@
   },
   "cds": {
     "requires": {
-      "API_BUSINESS_PARTNER": {
+      "API_SALES_ORDER_SRV": {
         "kind": "odata-v2",
-        "model": "srv/external/API_BUSINESS_PARTNER",
+        "model": "srv/external/API_SALES_ORDER_SRV",
         "credentials": {
-          "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/"
+          "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_SALES_ORDER_SRV"
         }
       }
     }

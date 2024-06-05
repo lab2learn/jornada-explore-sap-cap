@@ -1,8 +1,10 @@
-using { API_BUSINESS_PARTNER } from './external/API_BUSINESS_PARTNER';
+using { API_SALES_ORDER_SRV } from './external/API_SALES_ORDER_SRV';
 
 service Sap @(path: '/sap') {
 
     @readonly
-    entity A_BusinessPartner as projection on API_BUSINESS_PARTNER.A_BusinessPartner;
+    entity A_SalesOrder as projection on API_SALES_ORDER_SRV.A_SalesOrder;
+
+    function getSalesOrderAmountBySoldToParty() returns String;
 
 }
