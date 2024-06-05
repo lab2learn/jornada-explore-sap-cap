@@ -23,8 +23,6 @@ module.exports = async (srv) => {
             }
         });
 
-        console.log(data);
-
         const salesOrderAmountBySoldToParty = data.reduce((acc, curr) => {
             if (acc[curr.SoldToParty]) {
                 acc[curr.SoldToParty] = Number(Number(acc[curr.SoldToParty]) + curr.TotalNetAmount).toFixed(2);
@@ -36,8 +34,6 @@ module.exports = async (srv) => {
 
             return acc;
         }, {});
-
-        console.log(salesOrderAmountBySoldToParty)
 
         return salesOrderAmountBySoldToParty;
     })
