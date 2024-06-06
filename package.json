@@ -10,6 +10,7 @@
     "@sap-cloud-sdk/resilience": "^3.15.0",
     "@sap/cds": "^7",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "cors": "^2.8.5",
     "express": "^4"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
   },
   "cds": {
     "requires": {
+      "auth": "mocked",
       "API_SALES_ORDER_SRV": {
         "kind": "odata-v2",
         "model": "srv/external/API_SALES_ORDER_SRV",
